@@ -1,24 +1,114 @@
+/* --- Variables for Dynamic Dark Theme with Gradient --- */
+:root {
+    --dark-bg: #121212;             /* Deepest page background */
+    --card-bg: #1e1e1e;             /* Card background, slightly lighter */
+    --text-color-primary: #e0e0e0;  /* Off-white text */
+    
+    /* Dynamic Gradient Colors */
+    --gradient-start: #ff57b9;      /* Vibrant Pink */
+    --gradient-end: #9f44d3;        /* Deep Purple */
+    
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --gap-spacing: 25px;
+}
+
+/* Apply dark background to the body */
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-color-primary);
+    min-height: 100vh;
+}
+
+/* --- Main Home Container --- */
 .Home {
+    /* Use CSS Grid for a clean, responsive layout */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    padding: 1rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--gap-spacing);
+    padding: 30px;
+    max-width: 1300px;
+    margin: 0 auto; /* Center the grid */
+    min-height: calc(100vh - 80px); /* Adjust height based on your Navbar height */
 }
 
-@media (max-width:1200px) {
+/* ------------------------------------------------------------------- */
+/* --- Card Styling (For your Card component/Card.css) --- */
+/* ------------------------------------------------------------------- */
+
+.card {
+    /* Subtle base background for the card */
+    background-color: var(--card-bg);
+    border-radius: 12px; /* Slightly more modern radius */
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow-color); /* Subtle 3D lift */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent; /* Placeholder for hover border */
+}
+
+/* Dynamic Hover Effect */
+.card:hover {
+    transform: translateY(-8px); /* More pronounced lift on hover */
+    /* Vibrant shadow combining both gradient colors */
+    box-shadow: 
+        0 8px 30px var(--shadow-color),
+        0 0 15px rgba(255, 87, 185, 0.4), /* Pink glow */
+        0 0 20px rgba(159, 68, 211, 0.4); /* Purple glow */
+    /* Gradient Border (Note: Achieving true gradient borders is complex, this uses a solid color from the gradient) */
+    border-color: var(--gradient-end); 
+}
+
+/* --- Card Content Example (The main gradient application) --- */
+.card h3 {
+    /* Use the linear gradient for the text color */
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+    
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-shadow: 0 0 3px rgba(255, 87, 185, 0.3); /* Subtle glow */
+}
+
+.card p {
+    color: var(--text-color-secondary); /* Use secondary variable for consistency */
+    font-size: 0.95rem;
+    /* Limit the answer preview to a few lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    margin-top: auto; /* Push buttons to the bottom */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ------------------------------------------------------------------- */
+/* --- Media Queries for Layout Adjustment --- */
+/* ------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
     .Home {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        padding: 20px;
     }
 }
 
-@media (max-width:900px) {
+@media (max-width: 600px) {
     .Home {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width:500px) {
-    .Home {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: 1fr; /* Single column on phones */
+        padding: 15px;
     }
 }

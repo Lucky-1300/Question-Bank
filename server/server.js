@@ -1,40 +1,21 @@
-import dotenv from 'dotenv';
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import postRoutes from "./routes/post.route.js";
+
 dotenv.config();
 
-import express from 'express';
-import cors from 'cors';
-
-import PostRoute from './routes/post.route.js';
-import connectWithMongoDB from './db/Connection1.js';
-
 const app = express();
-
-// ✅ CORS setup (allow frontend)
-app.use(
-  cors({
-    origin: ["http://localhost:5173", "http://localhost:3000", "https://full-stack-web-question-bank.netlify.app"],
-    credentials: true,
-  })
-);
-
-// ✅ Middleware
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// ✅ Database connection
-connectWithMongoDB();
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => console.error("❌ DB connection error:", err));
 
-// ✅ Routes
-app.use("/api/v1", PostRoute);
+app.use("/", postRoutes);
 
-// ✅ Default route (for testing)
-app.get("/", (req, res) => {
-  res.json({
-    activeStatus: true,
-    error: false,
-  });
-});
-
-// ✅ Server start
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`✅ Server is listening on: http://localhost:${PORT}`));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
