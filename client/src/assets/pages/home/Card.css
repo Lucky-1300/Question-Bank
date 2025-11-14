@@ -1,71 +1,113 @@
+/* Professional light/dark-neutral card (fill the grid cell, don't force fixed width) */
 .Card {
-    background-color: #1F2937; /* Dark background for depth */
-    border-radius: 12px;
-    padding: 1.5rem;
-    /* Initial shadow for elevation */
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 30%;
+  box-sizing: border-box;
+  width: 100%;           /* fill the grid column, DO NOT exceed it */
+  max-width: none;       /* allow grid column to control width */
+  background: #ffffff;
+  color: #0b1b2b;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(12, 18, 28, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;     /* consistent visual height */
+  height: auto;          /* let content grow if needed */
+  overflow: hidden;      /* prevents spilling/overlap */
+  flex: 0 1 auto;        /* prevent cards from growing beyond their cell */
 }
 
+/* hover */
 .Card:hover {
-    transform: translateY(-8px); /* More pronounced lift effect */
-    /* Vibrant shadow on hover, using the pink theme color */
-    box-shadow: 0 15px 45px rgba(236, 72, 153, 0.5); 
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(12, 18, 28, 0.12);
 }
 
+/* Topic */
 .card-topic {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #6D28D9; /* Deep purple heading */
-    margin-bottom: 1rem;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #07223a;
+  margin: 0 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Content area */
 .card-content {
-    flex-grow: 1;
-    margin-bottom: 1.5rem;
-    color: #E5E7EB;
-}
-
-.card-content strong {
-    color: #EC4899; /* Pink emphasis for Q/A labels */
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  flex: 1 1 auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .card-content p {
-    margin-bottom: 0.75rem;
+  margin: 0;
 }
 
+/* Buttons */
 .card-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: auto; 
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 8px;
 }
 
 .card-btn {
-    flex: 1;
-    padding: 0.75rem;
-    font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  min-width: 84px;
+  box-shadow: 0 6px 14px rgba(12, 18, 28, 0.06);
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  color: #ffffff; /* default text color for good contrast */
 }
 
+/* Edit (primary) - match site's blue theme */
 .card-btn-edit {
-    background-color: #6D28D9; 
-    color: #FFFFFF;
+  background: linear-gradient(180deg, #bfdbfe 0%, #2563eb 100%); /* light-blue -> primary blue */
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
 }
-
 .card-btn-edit:hover {
-    background-color: #5B21AA;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(37, 99, 235, 0.18);
 }
 
+/* Delete (danger) - softer red, high contrast */
 .card-btn-delete {
-    background-color: #DC2626; /* Consistent danger color */
-    color: #FFFFFF;
+  background: linear-gradient(180deg, #fca5a5 0%, #ef4444 100%); /* soft red -> red */
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.12);
+}
+.card-btn-delete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(239, 68, 68, 0.18);
 }
 
-.card-btn-delete:hover {
-    background-color: #B91C1C;
+/* Keep focus outlines accessible */
+.card-btn:focus {
+  outline: 3px solid rgba(37, 99, 235, 0.16);
+  outline-offset: 2px;
+}
+
+/* small screens: stack buttons */
+@media (max-width: 720px) {
+  .card-buttons {
+    flex-direction: column;
+  }
+  .card-btn { width: 100%; }
+  .Card {
+    min-height: 0;
+    padding: 14px;
+  }
 }

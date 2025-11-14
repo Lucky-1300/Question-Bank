@@ -1,41 +1,48 @@
 .Home {
-    padding: 2rem;
-    flex-grow: 1;
-    /* Limit max width of the grid container and center it */
-    max-width: 1200px; /* Reduced max width for better 4-column appearance */
+    padding: 1rem;
+    width: calc(100% - 2rem); /* use full available width */
+    max-width: none;          /* allow the grid to fill the viewport */
     margin: 0 auto;
-    
-    /* CSS Grid for a responsive card layout */
+
     display: grid;
-    /* FORCES EXACTLY 4 COLUMNS (small cards) */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem; /* Slightly reduced gap for tighter look */
-    align-items: stretch; /* Ensures all cards in the row have the same height */
-    justify-content: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr)); /* exactly 4 columns */
+    gap: 16px;
+    align-items: start;
+    justify-items: stretch;
+    align-content: start;
+    grid-auto-rows: auto;        /* let rows size to content (avoid huge vertical gaps) */
 }
 
 .loading, .empty {
     font-size: 1.5rem;
     text-align: center;
     padding: 4rem 0;
-    color: #FFFFFF;
-    opacity: 0.8;
+    color: #0b1b2b;
+    opacity: 0.9;
     grid-column: 1 / -1; 
 }
 
-/* Tablet/Medium screen adjustment: 2 columns */
-@media (max-width: 992px) {
+/* Tablet: 3 columns */
+@media (max-width: 1200px) {
     .Home {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 800px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
-/* Mobile adjustment: single column layout */
+/* Small tablet: 2 columns */
+@media (max-width: 992px) {
+    .Home {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 100%;
+    }
+}
+
+/* Mobile: 1 column */
 @media (max-width: 600px) {
     .Home {
         padding: 1rem;
         grid-template-columns: 1fr;
         max-width: 100%;
+        gap: 12px;
     }
 }
