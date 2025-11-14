@@ -1,205 +1,155 @@
-/* --- Variables for easy color adjustments --- */
-:root {
-    --primary-color: black; /* A vibrant blue for key elements */
-    --secondary-color: #6c757d; /* A subtle grey for text/borders */
-    --background-color: #ffffff; /* White background */
-    --dark-color: #343a40; /* Dark text/logo color */
-    --hover-color: #0056b3; /* Darker blue for hover state */
-    --shadow-color: rgba(0, 0, 0, 0.1);
-}
-
-/* --- Base Navbar Styling --- */
 .navbar {
-    background-color: var(--background-color);
-    box-shadow: 0 4px 12px var(--shadow-color); /* Lifted appearance */
+    background-color: #1F2937; /* Dark background for strong contrast against the purple/pink theme */
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Keeps the navbar visible at the top */
+    position: sticky;
     top: 0;
     z-index: 1000;
-}
-
-/* --- Logo Section --- */
-.navbar__logo {
-    display: flex;
-    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .navbar__logo-text {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    /* Optional: Slight text shadow for pop */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); 
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #EC4899; /* Pink accent color */
 }
 
-/* --- Menu Button (Mobile) --- */
 .navbar__menu-button {
+    display: none; 
     background: none;
-    border: none;
-    color: var(--dark-color);
+    color: #FFFFFF;
     font-size: 1.5rem;
-    cursor: pointer;
-    display: none; /* Hidden by default on desktop */
     padding: 0.5rem;
-    transition: color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .navbar__menu-button:hover {
-    color: var(--primary-color);
+    transform: scale(1.1);
 }
 
-/* --- Content (Links & Search) --- */
 .navbar__content {
     display: flex;
     align-items: center;
-    gap: 30px; /* Space between links and search */
-    transition: max-height 0.3s ease-out, opacity 0.3s ease;
+    gap: 2rem;
 }
 
-/* --- Navigation Links --- */
 .navbar__links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-    gap: 20px; /* Space between individual links */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
 }
 
 .navbar__link {
+    color: #FFFFFF;
     text-decoration: none;
-    color: var(--dark-color);
-    font-size: 1rem;
     font-weight: 500;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: all 0.3s ease; /* Smooth hover effect */
+    padding: 0.5rem 0;
     position: relative;
+    transition: color 0.3s ease;
 }
 
-.navbar__link:hover {
-    color: var(--primary-color);
-    background-color: rgba(0, 123, 255, 0.05);
-}
-
-/* Underline animation on hover */
+/* Underline animation effect */
 .navbar__link::after {
     content: '';
     position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--primary-color);
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #6D28D9; /* Purple underline */
     transition: width 0.3s ease;
 }
 
-.navbar__link:hover::after {
-    width: 70%;
+.navbar__link:hover {
+    color: #EC4899;
 }
 
+.navbar__link:hover::after {
+    width: 100%;
+}
 
-/* --- Search Section --- */
 .navbar__search {
     display: flex;
     align-items: center;
-    border: 2px solid var(--secondary-color);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.navbar__search:focus-within {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 .navbar__search-input {
-    border: none;
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    border: 2px solid #6D28D9;
+    border-radius: 6px 0 0 6px;
+    background-color: #374151; /* Input background */
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.navbar__search-input:focus {
     outline: none;
-    flex-grow: 1;
+    border-color: #EC4899;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.5); /* Glowing focus effect */
 }
 
 .navbar__search-button {
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+    background-color: #6D28D9;
+    color: #FFFFFF;
+    border-radius: 0 6px 6px 0;
+    padding: 0.5rem 0.75rem;
+    height: 100%;
 }
 
 .navbar__search-button:hover {
-    background-color: var(--hover-color);
+    background-color: #EC4899;
 }
 
-/* ================================================= */
-/* --- Responsive Design (Mobile View) --- */
-/* ================================================= */
-
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem;
+        flex-wrap: wrap;
     }
-
+    
     .navbar__logo {
-        width: 100%;
+        display: flex;
         justify-content: space-between;
+        width: 100%;
+        align-items: center;
     }
 
     .navbar__menu-button {
-        display: block; /* Show menu button on small screens */
+        display: block;
     }
 
     .navbar__content {
-        /* Initial state for hidden menu */
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
         flex-direction: column;
         width: 100%;
-        gap: 15px;
-        align-items: stretch;
+        max-height: 0;
+        overflow: hidden;
+        /* Smooth opening/closing animation */
+        transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out; 
     }
 
     .navbar__content.active {
-        /* State for open menu */
-        max-height: 500px; /* A value large enough to contain content */
-        opacity: 1;
+        max-height: 300px;
         padding-top: 1rem;
     }
 
     .navbar__links {
         flex-direction: column;
+        gap: 0.5rem;
         width: 100%;
-    }
-    
-    .navbar__links li {
-        text-align: center;
-        width: 100%;
-    }
-
-    .navbar__link {
-        display: block; /* Makes the link take the full width */
-        padding: 0.75rem 0;
-        border-bottom: 1px solid rgba(0, 123, 255, 0.1);
-    }
-    
-    .navbar__link:hover::after {
-        width: 0; /* Remove underline animation in mobile for cleaner look */
+        align-items: center;
     }
 
     .navbar__search {
+        margin-top: 1rem;
         width: 100%;
+        justify-content: center;
+    }
+
+    .navbar__search-input, .navbar__search-button {
+        flex-grow: 1;
+        max-width: 250px;
     }
 }

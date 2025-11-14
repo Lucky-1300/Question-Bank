@@ -1,7 +1,7 @@
-import React from 'react';
-import './Card.css';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./Card.css";
 
 const Card = ({ post, refreshPosts, serverUrl }) => {
   const navigate = useNavigate();
@@ -18,8 +18,6 @@ const Card = ({ post, refreshPosts, serverUrl }) => {
     }
   };
 
-
-
   const editPost = () => {
     navigate(`/updatepost/${post._id}`);
   };
@@ -27,8 +25,10 @@ const Card = ({ post, refreshPosts, serverUrl }) => {
   return (
     <div className="Card">
       <h3 className="card-topic">{post.topic}</h3>
-      <p className="card-question">{post.question}</p>
-      <p className="card-answer">{post.answer}</p>
+      <div className="card-content">
+        <p><strong>Question:</strong> {post.question}</p>
+        <p><strong>Answer:</strong> {post.answer}</p>
+      </div>
       <div className="card-buttons">
         <button className="card-btn card-btn-edit" onClick={editPost}>
           Edit

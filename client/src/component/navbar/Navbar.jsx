@@ -16,6 +16,7 @@ const Navbar = () => {
                 <button className="navbar__menu-button" onClick={toggleMenu}>
                     ☰
                 </button>
+                
             </div>
             <div className={`navbar__content ${isMenuOpen ? 'active' : ''}`}>
                 <ul className="navbar__links">

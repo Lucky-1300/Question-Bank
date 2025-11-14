@@ -1,150 +1,84 @@
-/* --- Variables for Dark Theme --- */
-:root {
-    --dark-bg: #1e1e1e; /* Very dark background */
-    --card-bg: #2d2d2d; /* Slightly lighter card/container background */
-    --text-color-primary: #f0f0f0; /* Light text for readability */
-    --text-color-secondary: #aaaaaa; /* Subtle text for secondary elements */
-    --accent-color: #00bcd4; /* A bright cyan/teal for emphasis */
-    --delete-color: #e91e63; /* Red/pink for delete action */
-    --update-color: #ff9800; /* Amber/orange for update action */
-    --shadow-color: rgba(0, 0, 0, 0.7);
-}
-
-/* Apply dark theme to the main body/container (optional, but good practice) */
-body {
-    background-color: var(--dark-bg);
-    color: var(--text-color-primary);
-    transition: background-color 0.5s ease;
-}
-
-/* --- Main Component Container --- */
 .Single-Post {
-    max-width: 900px;
-    margin: 3rem auto;
+    max-width: 800px;
+    margin: 4rem auto;
     padding: 2.5rem;
-    background-color: var(--card-bg);
+    background-color: #1F2937; 
     border-radius: 12px;
-    box-shadow: 0 10px 30px var(--shadow-color); /* Deep, dramatic shadow */
-    animation: fadeIn 0.8s ease-out; /* Subtle entrance animation */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    color: #E5E7EB;
 }
 
-/* Keyframes for the entrance animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* --- Topic (H1) --- */
 .topic {
-    font-size: 2.2rem;
-    color: var(--accent-color);
-    border-bottom: 3px solid var(--accent-color);
-    padding-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #EC4899; /* Pink topic title */
+    border-bottom: 3px solid #6D28D9;
+    padding-bottom: 1rem;
     margin-bottom: 1.5rem;
-    font-weight: 700;
-    text-shadow: 0 0 5px rgba(0, 188, 212, 0.5); /* Glowing effect */
 }
 
-/* --- Question (H2) --- */
 .question {
-    font-size: 1.6rem;
-    color: var(--text-color-primary);
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
     font-weight: 600;
+    color: #6D28D9; /* Purple question */
+    margin-bottom: 1.5rem;
 }
 
-/* --- Answer (P) --- */
 .answer {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--text-color-secondary);
-    white-space: pre-wrap; /* Preserves formatting like line breaks from the code sample */
-    border-left: 5px solid var(--text-color-secondary);
-    padding-left: 1.5rem;
-    margin-bottom: 2.5rem;
-    transition: all 0.3s ease;
+    white-space: pre-wrap;
+    margin-bottom: 2rem;
 }
 
-.answer:hover {
-    border-left-color: var(--accent-color); /* Subtle interactive highlight */
-}
-
-/* --- Buttons Container --- */
 .btns {
     display: flex;
-    gap: 20px;
-    justify-content: flex-end; /* Align buttons to the right */
-    padding-top: 1rem;
-    border-top: 1px dashed var(--secondary-color);
+    gap: 1.5rem;
+    justify-content: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* --- Base Button Styling --- */
 .btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.8rem 2rem;
     font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    font-weight: 700;
 }
 
-/* --- Delete Button Specifics --- */
-.btn-delete {
-    background-color: var(--delete-color);
-    color: var(--text-color-primary);
-}
-
-.btn-delete:hover {
-    background-color: #c51152; /* Darker shade on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(233, 30, 99, 0.4); /* Stronger shadow glow */
-}
-
-/* --- Update Button Specifics --- */
 .btn-update {
-    background-color: var(--update-color);
-    color: var(--dark-bg); /* Dark text for contrast against orange */
+    background-color: #6D28D9; 
+    color: #FFFFFF;
 }
 
 .btn-update:hover {
-    background-color: #f57c00; /* Darker shade on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(255, 152, 0, 0.4); /* Stronger shadow glow */
+    background-color: #5B21AA;
 }
 
-/* --- Responsiveness for smaller screens --- */
+.btn-delete {
+    background-color: #DC2626; 
+    color: #FFFFFF;
+}
+
+.btn-delete:hover {
+    background-color: #B91C1C;
+}
+
+/* Mobile adjustments */
 @media (max-width: 600px) {
     .Single-Post {
-        margin: 1rem;
+        margin: 2rem 1rem;
         padding: 1.5rem;
     }
 
     .topic {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     .question {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 
     .btns {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        margin-bottom: 10px;
     }
 }

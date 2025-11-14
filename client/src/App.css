@@ -1,10 +1,44 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body {
+    margin: 0;
+    /* Use Inter font for a modern look */
+    font-family: 'Inter', sans-serif; 
+    /* The core purple-pink linear gradient background */
+    background: linear-gradient(135deg, #6D28D9 0%, #EC4899 100%); 
+    color: #FFFFFF;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
-html, body{
-  height: 100%;
-  font-family: Arial, sans-serif;
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+/* Base button styling with smooth, springy transition for animation */
+button {
+    cursor: pointer;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    /* Smooth transition with a slight spring effect */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+
+
+

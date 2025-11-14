@@ -1,131 +1,71 @@
-/* --- Variables for Dynamic Dark Theme --- */
-:root {
-    --dark-bg: #121212;            /* Deepest page background */
-    --card-bg-start: #1e1e1e;      /* Card base color 1 */
-    --card-bg-end: #252525;        /* Card base color 2 */
-    
-    /* Gradient Colors */
-    --gradient-start: #ff57b9;     /* Vibrant Pink */
-    --gradient-end: #9f44d3;       /* Deep Purple */
-    
-    --text-color-primary: #e0e0e0;
-    --text-color-secondary: #aaaaaa;
-    
-    --edit-color: #ff9800;         /* Amber/Orange */
-    --delete-color: #e91e63;       /* Red/Pink */
-    --shadow-color: rgba(0, 0, 0, 0.7);
-}
-
-/* --- Main Card Container --- */
 .Card {
-    /* Subtle linear gradient on the card background itself */
-    background: linear-gradient(135deg, var(--card-bg-start), var(--card-bg-end));
-    border-radius: 12px; /* Slightly larger radius for a modern look */
-    padding: 20px;
-    /* Use a shadow that hints at the gradient colors for depth */
-    box-shadow: 0 4px 15px var(--shadow-color), 0 0 10px rgba(159, 68, 211, 0.2);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    overflow: hidden;
-    height: 100%;
+    background-color: #1F2937; /* Dark background for depth */
+    border-radius: 12px;
+    padding: 1.5rem;
+    /* Initial shadow for elevation */
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    border: 1px solid #333; /* Darker subtle border */
+    justify-content: space-between;
+    height: 30%;
 }
 
-/* Dynamic Hover Effect using the Pink-Purple Gradient */
 .Card:hover {
-    transform: translateY(-8px); /* More pronounced lift on hover */
-    /* Use the gradient for a vibrant outer ring/glow effect */
-    box-shadow: 
-        0 8px 30px var(--shadow-color), 
-        0 0 20px rgba(255, 87, 185, 0.5); /* Stronger pink glow */
-    border: 1px solid var(--gradient-end); /* Purple border on hover */
+    transform: translateY(-8px); /* More pronounced lift effect */
+    /* Vibrant shadow on hover, using the pink theme color */
+    box-shadow: 0 15px 45px rgba(236, 72, 153, 0.5); 
 }
 
-/* --- Topic Title (The most accented element) --- */
 .card-topic {
-    /* Use a linear gradient for the text color */
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent; /* Fallback for browsers */
-    
     font-size: 1.5rem;
-    margin-bottom: 12px;
     font-weight: 700;
-    text-shadow: 0 0 3px rgba(255, 87, 185, 0.3); /* Subtle text glow */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #6D28D9; /* Deep purple heading */
+    margin-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
 }
 
-/* --- Question and Answer Snippet --- */
-.card-question {
-    color: var(--text-color-primary);
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.card-answer {
-    color: var(--text-color-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 25px;
+.card-content {
     flex-grow: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    margin-bottom: 1.5rem;
+    color: #E5E7EB;
 }
 
-/* --- Button Container --- */
+.card-content strong {
+    color: #EC4899; /* Pink emphasis for Q/A labels */
+}
+
+.card-content p {
+    margin-bottom: 0.75rem;
+}
+
 .card-buttons {
-    margin-top: auto;
-    padding-top: 15px;
-    border-top: 1px dashed #444; /* Dotted separator */
     display: flex;
-    gap: 15px;
-    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: auto; 
 }
 
-/* --- Base Button Styling --- */
 .card-btn {
-    padding: 8px 15px;
-    font-size: 0.9rem;
+    flex: 1;
+    padding: 0.75rem;
     font-weight: 600;
-    border: none;
-    border-radius: 20px; /* Pill shape for a softer look */
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transition curve */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* --- Edit Button Specifics (using secondary accent) --- */
 .card-btn-edit {
-    background-color: var(--edit-color);
-    color: var(--dark-bg);
+    background-color: #6D28D9; 
+    color: #FFFFFF;
 }
 
 .card-btn-edit:hover {
-    background-color: #f57c00;
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.5);
+    background-color: #5B21AA;
 }
 
-/* --- Delete Button Specifics (using the gradient for a stronger statement) --- */
 .card-btn-delete {
-    /* Use the linear gradient on the DELETE button */
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    color: var(--text-color-primary);
-    box-shadow: 0 4px 10px rgba(255, 87, 185, 0.3);
+    background-color: #DC2626; /* Consistent danger color */
+    color: #FFFFFF;
 }
 
 .card-btn-delete:hover {
-    /* Reverse gradient direction for subtle effect and scale up */
-    background: linear-gradient(45deg, var(--gradient-end), var(--gradient-start));
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(159, 68, 211, 0.6);
+    background-color: #B91C1C;
 }
