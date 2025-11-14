@@ -12,10 +12,13 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-height: 220px;     /* consistent visual height */
-  height: auto;          /* let content grow if needed */
-  overflow: hidden;      /* prevents spilling/overlap */
-  flex: 0 1 auto;        /* prevent cards from growing beyond their cell */
+
+  /* FIXED CARD DIMENSIONS (homepage) */
+  height: 240px;        /* fixed height so cards in a row align */
+  min-height: 240px;
+  max-height: 240px;
+  overflow: hidden;     /* hide overflow; full content seen only on view page */
+  flex: 0 0 auto;
 }
 
 /* hover */
@@ -33,6 +36,32 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Question - allow 2 lines on card */
+.card-question {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #123047;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* show 2 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Answer - allow 3 lines on card */
+.card-answer {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #324a57;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* show 3 lines */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Content area */
@@ -58,6 +87,7 @@
   justify-content: flex-end;
   align-items: center;
   margin-top: 8px;
+  flex-shrink: 0;
 }
 
 .card-btn {
@@ -92,6 +122,18 @@
 .card-btn-delete:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 36px rgba(239, 68, 68, 0.18);
+}
+
+/* View (secondary) button to match theme */
+.card-btn-view {
+  background: linear-gradient(180deg, #f0f9ff 0%, #cfeeff 100%);
+  color: #034e6b;
+  border: 1px solid rgba(3, 78, 107, 0.06);
+  box-shadow: 0 6px 14px rgba(3, 78, 107, 0.06);
+}
+.card-btn-view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(3, 78, 107, 0.10);
 }
 
 /* Keep focus outlines accessible */

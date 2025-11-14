@@ -89,7 +89,7 @@
 .navbar__search-input:focus {
     outline: none;
     border-color: #EC4899;
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.5); /* Glowing focus effect */
+    box-shadow: 0 0 0 3px rgba(124, 82, 192, 0.5); /* Glowing focus effect */
 }
 
 .navbar__search-button {

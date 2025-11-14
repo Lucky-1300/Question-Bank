@@ -22,14 +22,19 @@ const Card = ({ post, refreshPosts, serverUrl }) => {
     navigate(`/updatepost/${post._id}`);
   };
 
+  const viewPost = () => {
+    navigate(`/${post._id}`);
+  };
+
   return (
     <div className="Card">
       <h3 className="card-topic">{post.topic}</h3>
-      <div className="card-content">
-        <p><strong>Question:</strong> {post.question}</p>
-        <p><strong>Answer:</strong> {post.answer}</p>
-      </div>
+      <p className="card-question">{post.question}</p>
+      <p className="card-answer">{post.answer}</p>
       <div className="card-buttons">
+        <button className="card-btn card-btn-view" onClick={viewPost}>
+          View
+        </button>
         <button className="card-btn card-btn-edit" onClick={editPost}>
           Edit
         </button>
