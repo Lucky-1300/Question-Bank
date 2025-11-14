@@ -22,7 +22,12 @@ const Home = () => {
   return (
     <div className="Home">
       {posts.map((post) => (
-        <Card key={post._id} post={post} refreshPosts={loadPosts} />
+        <Card 
+          key={post._id}
+          post={post}
+          refreshPosts={loadPosts}
+          serverUrl={url}     
+        />
       ))}
     </div>
   );

@@ -1,6 +1,6 @@
 /* --- Variables for easy color adjustments --- */
 :root {
-    --primary-color: #007bff; /* A vibrant blue for key elements */
+    --primary-color: black; /* A vibrant blue for key elements */
     --secondary-color: #6c757d; /* A subtle grey for text/borders */
     --background-color: #ffffff; /* White background */
     --dark-color: #343a40; /* Dark text/logo color */

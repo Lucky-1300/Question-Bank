@@ -1,14 +1,18 @@
 import './SinglePost.css'
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const SinglePost = () => {
 
+const url = import.meta.env.VITE_SERVER_URL;
+console.log("SERVER URL IS:", url);
+
+
+const SinglePost = () => {
     const [post, setPost] = useState({});
     const { postID } = useParams();
     const navigate = useNavigate();
-    const url = process.env.REACT_APP_SERVER_URL;
+    const url = import.meta.env.VITE_SERVER_URL;
 
     const samplePost = {
         topic: "Artificial Intelligence in Education",
@@ -23,46 +27,49 @@ const SinglePost = () => {
 
     const loadPosts = async () => {
         try {
-            const response = await axios.get(`${url}/getsinglepost?postID=${postID}`);
+            const response = await axios.get(`${url}/getsinglepost/${postID}`);
+
             if (response?.data?.responseData) {
                 setPost(response.data.responseData);
             } else {
-                // fallback if API returns nothing
                 setPost(samplePost);
             }
         } catch (error) {
             console.error(error);
-            // fallback if server is down or error occurs
             setPost(samplePost);
         }
     };
 
     useEffect(() => {
         loadPosts();
-        // eslint-disable-next-line
-    }, []);
+    }, [postID]);
 
     const deletePost = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.delete(`${url}/deletepost`, {
-                data: {
-                    postID
-                }
-            });
-            if (response?.data?.responseData) {
-                navigate('/');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  e.preventDefault();
+
+  try {
+    const res = await axios.delete(`${url}/deletepost/${postID}`);
+
+    console.log("DELETE RESPONSE:", res.data);
+
+    if (res.data.responseData) {
+      navigate("/");
+    }
+  } catch (error) {
+    console.error("DELETE ERROR:", error);
+    alert("Delete failed!");
+  }
+};
+
+
+
 
     return (
         <div className='Single-Post'>
             <h1 className='topic'>{post?.topic}</h1>
             <h2 className='question'>{post?.question}</h2>
             <p className='answer'>{post?.answer}</p>
+
             <div className='btns'>
                 <button onClick={deletePost} className='btn btn-delete'>Delete</button>
                 <button onClick={() => navigate(`/updatepost/${postID}`)} className='btn btn-update'>Update</button>
@@ -72,3 +79,5 @@ const SinglePost = () => {
 };
 
 export default SinglePost;
+
+

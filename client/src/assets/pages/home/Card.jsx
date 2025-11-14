@@ -7,18 +7,18 @@ const Card = ({ post, refreshPosts, serverUrl }) => {
   const navigate = useNavigate();
 
   const deletePost = async () => {
-    if (window.confirm("Are you sure you want to delete this post?")) {
-      try {
-        await axios.delete(`${serverUrl}/deletepost`, {
-          data: { postID: post._id },
-        });
-        refreshPosts(); // reload posts after deletion
-      } catch (error) {
-        console.error("Error deleting post:", error);
-        alert("Failed to delete post");
-      }
+    if (!window.confirm("Delete this post?")) return;
+
+    try {
+      await axios.delete(`${serverUrl}/deletepost/${post._id}`);
+      refreshPosts();
+    } catch (error) {
+      console.error("Delete error:", error);
+      alert("Failed to delete");
     }
   };
+
+
 
   const editPost = () => {
     navigate(`/updatepost/${post._id}`);
