@@ -1,8 +1,7 @@
-/* Professional light/dark-neutral card (fill the grid cell, don't force fixed width) */
+/* Professional light card — fixed size on homepage, truncated text, accessible buttons */
 .Card {
   box-sizing: border-box;
-  width: 100%;           /* fill the grid column, DO NOT exceed it */
-  max-width: none;       /* allow grid column to control width */
+  width: 100%;
   background: #ffffff;
   color: #0b1b2b;
   border-radius: 12px;
@@ -13,21 +12,20 @@
   flex-direction: column;
   gap: 12px;
 
-  /* FIXED CARD DIMENSIONS (homepage) */
-  height: 240px;        /* fixed height so cards in a row align */
+  /* fixed card dimensions for consistent rows */
+  height: 240px;
   min-height: 240px;
   max-height: 240px;
-  overflow: hidden;     /* hide overflow; full content seen only on view page */
+  overflow: hidden;
   flex: 0 0 auto;
 }
 
-/* hover */
 .Card:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 40px rgba(12, 18, 28, 0.12);
 }
 
-/* Topic */
+/* Topic (single line) */
 .card-topic {
   font-size: 1.125rem;
   font-weight: 700;
@@ -38,7 +36,7 @@
   white-space: nowrap;
 }
 
-/* Question - allow 2 lines on card */
+/* Question - clamp to 2 lines */
 .card-question {
   margin: 0;
   font-size: 0.98rem;
@@ -46,12 +44,12 @@
   color: #123047;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; /* show 2 lines */
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Answer - allow 3 lines on card */
+/* Answer - clamp to 3 lines */
 .card-answer {
   margin: 0;
   font-size: 0.95rem;
@@ -59,12 +57,12 @@
   line-height: 1.4;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* show 3 lines */
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Content area */
+/* Content container */
 .card-content {
   color: #374151;
   font-size: 0.95rem;
@@ -80,7 +78,7 @@
   margin: 0;
 }
 
-/* Buttons */
+/* Buttons area */
 .card-buttons {
   display: flex;
   gap: 10px;
@@ -99,12 +97,12 @@
   min-width: 84px;
   box-shadow: 0 6px 14px rgba(12, 18, 28, 0.06);
   transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
-  color: #ffffff; /* default text color for good contrast */
+  color: #ffffff;
 }
 
-/* Edit (primary) - match site's blue theme */
+/* Primary (Edit) */
 .card-btn-edit {
-  background: linear-gradient(180deg, #bfdbfe 0%, #2563eb 100%); /* light-blue -> primary blue */
+  background: linear-gradient(180deg, #bfdbfe 0%, #2563eb 100%);
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
 }
@@ -113,9 +111,9 @@
   box-shadow: 0 12px 36px rgba(37, 99, 235, 0.18);
 }
 
-/* Delete (danger) - softer red, high contrast */
+/* Danger (Delete) */
 .card-btn-delete {
-  background: linear-gradient(180deg, #fca5a5 0%, #ef4444 100%); /* soft red -> red */
+  background: linear-gradient(180deg, #fca5a5 0%, #ef4444 100%);
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(239, 68, 68, 0.12);
 }
@@ -124,7 +122,7 @@
   box-shadow: 0 12px 36px rgba(239, 68, 68, 0.18);
 }
 
-/* View (secondary) button to match theme */
+/* Secondary (View) */
 .card-btn-view {
   background: linear-gradient(180deg, #f0f9ff 0%, #cfeeff 100%);
   color: #034e6b;
@@ -136,20 +134,23 @@
   box-shadow: 0 10px 30px rgba(3, 78, 107, 0.10);
 }
 
-/* Keep focus outlines accessible */
+/* Focus outline for accessibility */
 .card-btn:focus {
   outline: 3px solid rgba(37, 99, 235, 0.16);
   outline-offset: 2px;
 }
 
-/* small screens: stack buttons */
+/* Mobile: stack buttons and relax fixed height */
 @media (max-width: 720px) {
   .card-buttons {
     flex-direction: column;
   }
-  .card-btn { width: 100%; }
+  .card-btn {
+    width: 100%;
+  }
   .Card {
     min-height: 0;
+    height: auto;
     padding: 14px;
   }
 }
